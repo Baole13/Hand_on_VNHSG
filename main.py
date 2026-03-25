@@ -129,7 +129,7 @@ def main():
         # Check if model is too large for CPU
         if model_name in LARGE_MODELS_WARNING:
             print(f"\n[ERROR] LỖI: {model_name} {LARGE_MODELS_WARNING[model_name]}")
-            print(f"\nℹ️  Mô hình này yêu cầu GPU. Các mô hình an toàn cho CPU:")
+            print(f"\n  Mô hình này yêu cầu GPU. Các mô hình an toàn cho CPU:")
             for safe_model, size in CPU_SAFE_MODELS.items():
                 print(f"   • {safe_model:45} {size}")
             print(f"\nCách sử dụng: python main.py --models {list(CPU_SAFE_MODELS.keys())[0]}")
