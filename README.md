@@ -14,14 +14,8 @@ exams.
 > * Contain both text and images
 > * Support Vietnamese and English languages 
 
-[![arXiv](https://img.shields.io/badge/cs.LG-arXiv:2305.12199-b31b1b.svg)](https://arxiv.org/abs/2305.12199)
-[![PWC](https://img.shields.io/badge/paperwithcode-VNHSGE_dataset-b31bb.svg)](https://paperswithcode.com/dataset/vnhsge)
-
 VNHSGE dataset and other datasets:  the performance of ChatGPT and BingChat on the VNHSGE dataset is compared to other datasets in
 the [GPT-4 Report](https://openai.com/research/gpt-4)
-
-
-![alt text](https://github.com/Xdao85/VNHSGE/blob/main/Figures/VNHSGE_other_dataset.png?raw=true)
 
 ## Latest News
 > * Full dataset will be uploaded soon!
@@ -121,10 +115,7 @@ We evaluated the performance of ChatGPT and BingChat on the VNHSGE dataset.
 
 For complex calculation and reasoning subjects like mathematics, physics, chemistry, and biology, ChatGPT and BingChat have performance ranges from 48% to 69%. However, for subjects that rely more on language skills, such as literature, English, history, geography, and civic education, their performances range from 56.5% to 92.4%.
 
-![alt text](https://github.com/Xdao85/VNHSGE/blob/main/Figures/Performance.png?raw=true)
-
 * Comparison of performances among ChatGPT, BingChat, and Vietnamese students in score spectrum: Our objective is to assess whether LLMs have capabilities comparable to human-level performance, despite the challenges posed by different settings. Through this comparison, we can evaluate the potential of LLMs as effective learning support tools for students across various subject areas. 
-![alt text](https://github.com/Xdao85/VNHSGE/blob/main/Figures/Vietnamese_student_score_spectrum.png?raw=true)
   (Mathematics score spectrum of Vietnamese students in 2021).
   
 <!-- CITATION -->
