@@ -8,7 +8,7 @@ from data_loader import MCQSample
 class PromptConfig:
     prompt_type: str  
     include_lecture: bool = True
-    language: str = "vi"  # Thay đổi từ "en" sang "vi" (Tiếng Việt)
+    language: str = "vi" 
 
 
 def _format_choices(choices: List[str]) -> str:
