@@ -44,15 +44,15 @@ def parse_args():
 
 # CPU-Compatible Model Sizes
 CPU_SAFE_MODELS = {
-    "TinyLlama/TinyLlama-1.1B-Chat-v1.0": "1.1B (✅ CPU-safe)",
-    "gpt2": "124M (✅ Very fast on CPU)",
-    "distilgpt2": "82M (✅ Ultra-fast on CPU)",
+    "TinyLlama/TinyLlama-1.1B-Chat-v1.0": "1.1B ([OK] CPU-safe)",
+    "gpt2": "124M ([OK] Very fast on CPU)",
+    "distilgpt2": "82M ([OK] Ultra-fast on CPU)",
 }
 
 LARGE_MODELS_WARNING = {
-    "Qwen/Qwen2-7B-Instruct": "7B (❌ Needs GPU, ~14GB VRAM)",
-    "meta-llama/Llama-2-7b": "7B (❌ Needs GPU, ~14GB VRAM)",
-    "gpt2-medium": "355M (⚠️  Medium, may be slow)",
+    "Qwen/Qwen2-7B-Instruct": "7B ([ERROR] Needs GPU, ~14GB VRAM)",
+    "meta-llama/Llama-2-7b": "7B ([ERROR] Needs GPU, ~14GB VRAM)",
+    "gpt2-medium": "355M ([WARNING] Medium, may be slow)",
 }
 
 
@@ -128,19 +128,19 @@ def main():
     for model_name in args.models:
         # Check if model is too large for CPU
         if model_name in LARGE_MODELS_WARNING:
-            print(f"\n❌ LỖI: {model_name} {LARGE_MODELS_WARNING[model_name]}")
+            print(f"\n[ERROR] LỖI: {model_name} {LARGE_MODELS_WARNING[model_name]}")
             print(f"\nℹ️  Mô hình này yêu cầu GPU. Các mô hình an toàn cho CPU:")
             for safe_model, size in CPU_SAFE_MODELS.items():
                 print(f"   • {safe_model:45} {size}")
             print(f"\nCách sử dụng: python main.py --models {list(CPU_SAFE_MODELS.keys())[0]}")
             continue  # Bỏ qua mô hình này
         
-        print(f"\n📦 Đang tải mô hình: {model_name}")
+        print(f"\n[LOADING] Đang tải mô hình: {model_name}")
         runner = HFModelRunner(model_name=model_name)
         gen_cfg = GenerationConfig(max_new_tokens=args.max_new_tokens)
 
         for prompt_type in args.prompt_types:
-            print(f"\n▶️  Đang chạy {model_name} | loại_prompt={prompt_type} | ngôn_ngữ=vi")
+            print(f"\n[RUNNING] Đang chạy {model_name} | loại_prompt={prompt_type} | ngôn_ngữ=vi")
             prompts = build_prompts(
                 split_samples,
                 prompt_type=prompt_type,
@@ -158,7 +158,7 @@ def main():
             )
             metrics = compute_accuracy(gold, preds)
             
-            print(f"\n📊 Độ chính xác: {metrics['accuracy']:.4f} ({metrics['correct']}/{metrics['valid_predictions']} hợp lệ)")
+            print(f"\n[METRICS] Độ chính xác: {metrics['accuracy']:.4f} ({metrics['correct']}/{metrics['valid_predictions']} hợp lệ)")
             print(f"   Precision: {metrics['precision']:.4f}")
             print(f"   Recall: {metrics['recall']:.4f}")
             print(f"   F1-Score: {metrics['f1']:.4f}")

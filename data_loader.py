@@ -321,7 +321,7 @@ def validate_dataset(samples: List[MCQSample], verbose: bool = True) -> Tuple[Li
     }
     
     if verbose:
-        print(f"✅ Báo cáo Xác thực Dataset:")
+        print(f"[OK] Báo cáo Xác thực Dataset:")
         print(f"  Tổng cộng: {report['total_samples']}")
         print(f"  Hợp lệ: {report['valid_samples']}")
         print(f"  Không hợp lệ: {report['invalid_samples']}")

@@ -15,7 +15,7 @@ class GenerationConfig:
 
 class HFModelRunner:
     def __init__(self, model_name: str):
-        print(f"\n📦 Đang tải mô hình: {model_name}")
+        print(f"\n[LOADING] Đang tải mô hình: {model_name}")
         self.model_name = model_name
         self.tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
         if self.tokenizer.pad_token is None:
@@ -23,19 +23,19 @@ class HFModelRunner:
         
         if torch.cuda.is_available():
             device_map = "cuda"
-            print(f"✅ GPU được phát hiện: {torch.cuda.get_device_name(0)}")
+            print(f"[OK] GPU được phát hiện: {torch.cuda.get_device_name(0)}")
         else:
             device_map = "cpu"
             try:
                 import psutil
                 available_mem = psutil.virtual_memory().available / (1024**3)
-                print(f"⚠️  GPU không có sẵn, sử dụng CPU (chậm hơn)")
+                print(f"[WARNING] GPU không có sẵn, sử dụng CPU (chậm hơn)")
                 print(f"   RAM có sẵn: {available_mem:.1f} GB")
                 if available_mem < 8:
-                    print(f"⚠️  CẢNH BÁO: Bộ nhớ thấp! Mô hình có thể gặp sự cố.")
+                    print(f"[WARNING] CẢNH BÁO: Bộ nhớ thấp! Mô hình có thể gặp sự cố.")
                     print(f"   Đề xuất: Sử dụng các mô hình nhỏ hơn (TinyLlama, DistilGPT2)")
             except ImportError:
-                print(f"⚠️  GPU không có sẵn, sử dụng CPU (chậm hơn)")
+                print(f"[WARNING] GPU không có sẵn, sử dụng CPU (chậm hơn)")
         
         self.model = AutoModelForCausalLM.from_pretrained(
             model_name,
@@ -71,7 +71,7 @@ class HFModelRunner:
                 cleaned.append(full_text[p_len:].strip() if len(full_text) > p_len else full_text.strip())
             return cleaned
         except Exception as e:
-            print(f"❌ LỖI trong tạo batch: {e}")
+            print(f"[ERROR] LỖI trong tạo batch: {e}")
             return [""] * len(prompts)
 
 

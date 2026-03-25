@@ -122,19 +122,19 @@ def print_error_analysis(
             incorrect_examples.append((s, p, raw))
 
     print("\n=== Phân tích Lỗi ===")
-    print("\n✅ Ví dụ đúng:")
+    print("\n[OK] Ví dụ đúng:")
     for s, p, _ in correct_examples[:max_examples]:
         print(f"- ID={s.sample_id} | đáp_án_đúng={s.answer_idx} dự_đoán={p} | chủ_đề={s.subject}")
         print(f"  Câu hỏi: {s.question[:200]}")
 
-    print("\n❌ Ví dụ sai:")
+    print("\n[ERROR] Ví dụ sai:")
     for s, p, raw in incorrect_examples[:max_examples]:
         print(f"- ID={s.sample_id} | đáp_án_đúng={s.answer_idx} dự_đoán={p} | chủ_đề={s.subject}")
         print(f"  Câu hỏi: {s.question[:200]}")
         print(f"  Đầu ra: {raw[:200]}")
         print("  Lý do có thể: thiếu kiến thức, hướng dẫn yếu, hoặc nhầm lẫn với các lựa chọn khác.")
 
-    print("\n⚠️  Ví dụ phân tích không hợp lệ:")
+    print("\n[WARNING] Ví dụ phân tích không hợp lệ:")
     for s, raw in invalid_examples[:max_examples]:
         print(f"- ID={s.sample_id} | đáp_án_đúng={s.answer_idx} | chủ_đề={s.subject}")
         print(f"  Câu hỏi: {s.question[:200]}")
